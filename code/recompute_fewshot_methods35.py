@@ -465,7 +465,11 @@ def recalc_generation(item_csv: Path, panel_jsonl: Path, outdir: Path, B: int, S
         r = dict(r)
         r['shot'] = int(r['shot'])
         r['dual_total'] = float(r['dual_total'])
-        r['source_cluster'] = r['item_id']
+        if r['task_id'] == 'rewriting':
+            src = panel[r['item_id']]['metadata']['source_index']
+            r['source_cluster'] = f'REW-SRC-{src}'
+        else:
+            r['source_cluster'] = r['item_id']
         r['accuracy'] = r['dual_total'] / 100.0  # reuse mean-score sufficient handler
         d[(r['model_id'], r['task_id'], r['shot'])].append(r)
     models = sorted({r['model_id'] for r in items})
@@ -559,51 +563,65 @@ def comparison_audit(new_rows, old_rows, keys, old_effect_col, old_p_col, label)
 
 def main():
     ap=argparse.ArgumentParser()
-    ap.add_argument('--data-dir', type=Path, required=True, help='Extracted formal-records root with scored_records/')
-    ap.add_argument('--out', type=Path, default=None, help='Output dir (default: <repo>/results/fewshot_recomputed)')
-    ap.add_argument('--package-root', type=Path, default=Path(__file__).resolve().parents[1], help=argparse.SUPPRESS)
-    ap.add_argument('--bootstrap', type=int, default=10000)
-    ap.add_argument('--signflips', type=int, default=10000)
-    ap.add_argument('--seed', type=int, default=20260915)
+    ap.add_argument('--data-dir',type=Path,default=None,help='Optional extracted formal-records root. If omitted, packaged inputs/ are used.')
+    ap.add_argument('--out',type=Path,default=None,help='Output dir (default: <repo>/results/fewshot_recomputed)')
+    ap.add_argument('--package-root',type=Path,default=Path(__file__).resolve().parents[1],help=argparse.SUPPRESS)
+    ap.add_argument('--bootstrap',type=int,default=10000)
+    ap.add_argument('--signflips',type=int,default=10000)
+    ap.add_argument('--seed',type=int,default=20260915)
     args=ap.parse_args()
     root=args.package_root
-    data=args.data_dir
-    scored=data/'scored_records'
+    data=Path(args.data_dir) if args.data_dir else None
+    if data is None:
+        scored=root/'inputs'
+    else:
+        scored=(data/'scored_records') if (data/'scored_records').is_dir() else data
     if not scored.is_dir():
-        raise SystemExit(f'missing scored_records/ under {data}')
+        raise SystemExit(f'missing scored input directory: {scored}')
     out=args.out or (root/'results'/'fewshot_recomputed')
-    out.mkdir(parents=True, exist_ok=True)
-    ref_candidates=[data/'reference_legacy', root/'reference_legacy']
-    ref=next((r for r in ref_candidates if r.is_dir()), None)
+    out.mkdir(parents=True,exist_ok=True)
+
+    ref_candidates=[]
+    if data is not None:
+        ref_candidates.append(data/'reference_legacy')
+    ref_candidates.append(root/'reference_legacy')
+    ref=next((r for r in ref_candidates if r.is_dir()),None)
+    if ref is None:
+        raise SystemExit('missing reference_legacy/ directory')
+
     mainrows=read_jsonl_gz(scored/'main_scored_items_methods_v2.jsonl.gz')
     matched=read_jsonl_gz(scored/'matched_order_scored_items_methods_v2.jsonl.gz')
     ablation=read_jsonl_gz(scored/'ablation_scored_items_methods_v2.jsonl.gz')
     prim,macro,summary=recalc_main(mainrows,out,args.bootstrap,args.signflips,args.seed)
     mprim,mmacro,orderdiag=recalc_matched(matched,out,args.bootstrap,args.signflips,args.seed)
-    panel72=scored/'panel72_scoring.jsonl'
-    if not panel72.is_file():
-        panel72=data/'panel72_scoring.jsonl'
-    if panel72.is_file():
-        gen=recalc_generation(scored/'dual_2376_item_scores.csv',panel72,out,args.bootstrap,args.signflips,args.seed)
-    else:
-        print('WARNING: panel72_scoring.jsonl not found in release asset; skipping generation sensitivity recompute')
-        gen=[]
-    abl_legacy=(ref/'ablation_paired_contrasts_methods_v2.csv') if ref else None
-    if abl_legacy and abl_legacy.is_file():
-        abl=recalc_ablation_exploratory(ablation,abl_legacy,out,args.bootstrap,args.signflips,args.seed)
-    else:
-        print('WARNING: ablation legacy contrasts CSV not found; skipping ablation exploratory recompute')
-        abl=[]
+
+    panel_candidates=[scored/'panel72_scoring.jsonl',root/'inputs'/'panel72_scoring.jsonl']
+    if data is not None:
+        panel_candidates.insert(1,data/'panel72_scoring.jsonl')
+    panel72=next((p for p in panel_candidates if p.is_file()),None)
+    if panel72 is None:
+        raise SystemExit('missing panel72_scoring.jsonl')
+    gen_score_path=scored/'dual_2376_item_scores.csv'
+    if not gen_score_path.is_file():
+        gen_score_path=root/'inputs'/'dual_2376_item_scores.csv'
+    if not gen_score_path.is_file():
+        raise SystemExit('missing dual_2376_item_scores.csv')
+    gen=recalc_generation(gen_score_path,panel72,out,args.bootstrap,args.signflips,args.seed)
+
+    required_refs={
+        'ablation':ref/'ablation_paired_contrasts_methods_v2.csv',
+        'main':ref/'main_shot_paired_contrasts_methods_v2.csv',
+        'matched':ref/'matched_order_paired_contrasts_methods_v2.csv',
+    }
+    missing=[str(p) for p in required_refs.values() if not p.is_file()]
+    if missing:
+        raise SystemExit('missing legacy reference files: '+', '.join(missing))
+    abl=recalc_ablation_exploratory(ablation,required_refs['ablation'],out,args.bootstrap,args.signflips,args.seed)
     audit=[]
-    if ref:
-        main_legacy=ref/'main_shot_paired_contrasts_methods_v2.csv'
-        matched_legacy=ref/'matched_order_paired_contrasts_methods_v2.csv'
-        if main_legacy.is_file():
-            audit += comparison_audit(prim, read_csv(main_legacy), ['model_id','task_id','contrast'], 'difference_100','p_cluster_swap','main_primary_vs_legacy')
-        if matched_legacy.is_file():
-            audit += comparison_audit(mprim, read_csv(matched_legacy), ['model_id','task_id','contrast'], 'difference_100','p_cluster_swap','matched_order_vs_legacy')
-    if audit:
-        write_csv(out/'legacy_comparison_audit.csv',audit)
+    audit += comparison_audit(prim,read_csv(required_refs['main']),['model_id','task_id','contrast'],'difference_100','p_cluster_swap','main_primary_vs_legacy')
+    audit += comparison_audit(mprim,read_csv(required_refs['matched']),['model_id','task_id','contrast'],'difference_100','p_cluster_swap','matched_order_vs_legacy')
+    write_csv(out/'legacy_comparison_audit.csv',audit)
+
     families=[]
     for family_id, rows in [(f'main_{t}_primary_22',[r for r in prim if r['task_id']==t]) for t in TASKS]:
         families.append({'family_id':family_id,'n_tests':len(rows),'role':'formal primary shot-vs-zero family'})
@@ -625,7 +643,7 @@ def main():
             'matched_order_rows':len(matched),
             'matched_order_formal_contrasts':len(mprim),
             'matched_order_macro_f1_secondary_contrasts':len(mmacro),
-            'generation_item_rows':2376,
+            'generation_item_rows':len(read_csv(gen_score_path)),
             'generation_contrasts':len(gen),
             'earlier_ablation_rows':len(ablation),
             'earlier_ablation_contrasts':len(abl),

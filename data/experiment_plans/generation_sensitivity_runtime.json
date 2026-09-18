@@ -1,5 +1,5 @@
 {
-  "profile": "formal11",
+  "profile": "v1.0.4",
   "expected_formal_models": 11,
   "formal_model_order": [
     "Baichuan2-7B-Chat",

@@ -20,5 +20,9 @@
   "system_prompt_policy": {
     "main_non_qa_tasks": null,
     "main_qa_v4_5": "configs/qa_system_prompt.txt"
-  }
+  },
+  "access_or_load_utc": "2026-08-28T08:54:41.989695+00:00",
+  "main_run_start_utc": "2026-08-28T08:54:43.496066+00:00",
+  "main_run_end_utc": "2026-09-01T16:33:42.962394+00:00",
+  "completed_at_utc": "2026-08-29T05:53:18.554204+00:00"
 }

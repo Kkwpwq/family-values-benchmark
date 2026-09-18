@@ -1,78 +1,96 @@
 #!/usr/bin/env python3
-"""Validate Qwen3 / robustness scored-record inputs from the formal-records release asset.
-
-Internal-only reference CSVs absent from both public packages are optional:
-  - robustness_120_task_setting_results_methods_v2.csv
-  - mode_paired_contrasts_methods_v2.csv
-"""
+"""Validate Qwen3 and robustness inputs for the packaged Methods-3.5 recalculation."""
 from __future__ import annotations
 
 import argparse
 import csv
 import gzip
 import json
-import sys
 from pathlib import Path
 
 
-def gz(path: Path):
+def read_gz(path: Path):
     with gzip.open(path, "rt", encoding="utf-8-sig") as f:
-        return [json.loads(x) for x in f if x.strip()]
+        return [json.loads(line) for line in f if line.strip()]
 
 
-def csvrows(path: Path):
+def read_csv(path: Path):
     with path.open(encoding="utf-8-sig", newline="") as f:
         return list(csv.DictReader(f))
 
 
-def main() -> int:
-    ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--data-dir", type=Path, required=True,
-                    help="Extracted formal-records root (must contain scored_records/)")
-    ap.add_argument("--paired-csv", type=Path, default=None,
-                    help="Optional path to paired_main_3600_latest.csv")
-    args = ap.parse_args()
-    root = args.data_dir
-    scored = root / "scored_records"
-    if not scored.is_dir():
-        raise SystemExit(f"missing scored_records/ under {root}")
-
-    main_rows = gz(scored / "main_scored_items_methods_v2.jsonl.gz")
-    rob = gz(scored / "robustness_scored_items_methods_v2.jsonl.gz")
-
+def main() -> None:
     repo = Path(__file__).resolve().parents[1]
-    paired_path = args.paired_csv or (repo / "results" / "dual_judge" / "paired_main_3600_latest.csv")
-    if not paired_path.is_file():
-        alt = scored / "paired_main_3600_latest.csv"
-        paired_path = alt if alt.is_file() else paired_path
-    if not paired_path.is_file():
-        raise SystemExit(f"missing paired dual-judge CSV: {paired_path}")
-    paired = csvrows(paired_path)
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--data-dir", type=Path, default=None,
+                    help="Optional extracted formal-records root. If omitted, packaged inputs/ are used.")
+    args = ap.parse_args()
 
-    optional = {}
-    for name in (
-        "robustness_120_task_setting_results_methods_v2.csv",
-        "mode_paired_contrasts_methods_v2.csv",
-    ):
-        candidates = [scored / name, root / name, root / "reference_legacy" / name]
-        hit = next((p for p in candidates if p.is_file()), None)
-        optional[name] = str(hit) if hit else None
+    if args.data_dir is None:
+        scored = repo / "inputs"
+        data_root = None
+    else:
+        data_root = args.data_dir
+        scored = data_root / "scored_records" if (data_root / "scored_records").is_dir() else data_root
+    if not scored.is_dir():
+        raise SystemExit(f"missing scored input directory: {scored}")
+
+    main_rows = read_gz(scored / "main_scored_items_methods_v2.jsonl.gz")
+    robust = read_gz(scored / "robustness_scored_items_methods_v2.jsonl.gz")
+
+    paired_candidates = [repo / "results" / "dual_judge" / "paired_main_3600_latest.csv",
+                         scored / "paired_main_3600_latest.csv"]
+    paired_path = next((p for p in paired_candidates if p.is_file()), None)
+    if paired_path is None:
+        raise SystemExit("missing paired_main_3600_latest.csv")
+    paired = read_csv(paired_path)
+
+    summary_candidates = [scored / "robustness_120_task_setting_results_methods_v2.csv",
+                          repo / "inputs" / "robustness_120_task_setting_results_methods_v2.csv"]
+    if data_root is not None:
+        summary_candidates.insert(1, data_root / "robustness_120_task_setting_results_methods_v2.csv")
+    summary_path = next((p for p in summary_candidates if p.is_file()), None)
+    if summary_path is None:
+        raise SystemExit("missing robustness_120_task_setting_results_methods_v2.csv")
+    summary = read_csv(summary_path)
+
+    ref_candidates = [repo / "reference_legacy"]
+    if data_root is not None:
+        ref_candidates.insert(0, data_root / "reference_legacy")
+    ref = next((p for p in ref_candidates if p.is_dir()), None)
+    if ref is None or not (ref / "mode_paired_contrasts_methods_v2.csv").is_file():
+        raise SystemExit("missing reference_legacy/mode_paired_contrasts_methods_v2.csv")
+    legacy = read_csv(ref / "mode_paired_contrasts_methods_v2.csv")
 
     assert len(main_rows) == 19800, len(main_rows)
     assert len(paired) == 3600, len(paired)
-    assert len(rob) == 7425, len(rob)
+    assert len(robust) == 7425, len(robust)
+    assert len(summary) == 120, len(summary)
+    assert len(legacy) == 15, len(legacy)
+
+    qwen_models = {"Qwen3-8B-Thinking", "Qwen3-8B-NonThinking"}
+    for model in qwen_models:
+        for task, n in {"classification":100,"reasoning":100,"structuring":100,"relationship":50,"qa_v4_5":100}.items():
+            for shot in (0,1,3):
+                rows = [r for r in main_rows if r["model_id"] == model and r["task_id"] == task and r.get("shot") == shot]
+                assert len(rows) == n, (model, task, shot, len(rows), n)
+                if task == "structuring":
+                    assert all(r.get("cnhi_v2") is not None for r in rows)
+
+    failures = [r for r in robust if r.get("final_delivered") is False]
+    assert len(failures) == 10, len(failures)
+    assert all(r.get("raw_output_sha256") for r in robust), "raw_output_sha256 missing from robustness scored records"
 
     print(json.dumps({
         "status": "PASS",
-        "data_dir": str(root),
         "main_rows": len(main_rows),
         "paired_rows": len(paired),
-        "paired_csv": str(paired_path),
-        "robustness_rows": len(rob),
-        "optional_internal_files": optional,
+        "robustness_rows": len(robust),
+        "robustness_summary_rows": len(summary),
+        "legacy_mode_rows": len(legacy),
+        "final_delivery_failures": len(failures),
     }, indent=2))
-    return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()

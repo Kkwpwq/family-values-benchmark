@@ -1,5 +1,5 @@
 {
-  "protocol_version": "1.0.3",
+  "protocol_version": "1.0.4",
   "benchmark_version": "3.1.3",
   "models_config_sha256_at_creation": "4be7a7034bf45d811a9a314074c881b24f6e36f13952357106bd7bd44f86fdc5",
   "primary_cross_model_condition": "0-shot only",

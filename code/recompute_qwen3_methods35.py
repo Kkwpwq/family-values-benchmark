@@ -278,43 +278,66 @@ def legacy_audit(new,legacy,outdir):
 
 def main():
     ap=argparse.ArgumentParser()
-    ap.add_argument('--data-dir',type=Path,required=True,help='Extracted formal-records root with scored_records/')
+    ap.add_argument('--data-dir',type=Path,default=None,help='Optional extracted formal-records root. If omitted, packaged inputs/ are used.')
     ap.add_argument('--out',type=Path,default=None,help='Output dir (default: <repo>/results/qwen3_recomputed)')
     ap.add_argument('--package-root',default=str(Path(__file__).resolve().parents[1]),help=argparse.SUPPRESS)
-    ap.add_argument('--bootstrap',type=int,default=10000);ap.add_argument('--signflips',type=int,default=10000);ap.add_argument('--seed',type=int,default=20260915);args=ap.parse_args()
+    ap.add_argument('--bootstrap',type=int,default=10000)
+    ap.add_argument('--signflips',type=int,default=10000)
+    ap.add_argument('--seed',type=int,default=20260915)
+    args=ap.parse_args()
     root=Path(args.package_root)
-    data=Path(args.data_dir); scored=data/'scored_records'
-    if not scored.is_dir(): raise SystemExit(f'missing scored_records/ under {data}')
-    out=args.out or (root/'results'/'qwen3_recomputed'); out.mkdir(parents=True, exist_ok=True)
-    ref_candidates=[data/'reference_legacy', root/'reference_legacy']
-    ref=next((r for r in ref_candidates if r.is_dir()), None)
+    data=Path(args.data_dir) if args.data_dir else None
+    if data is None:
+        scored=root/'inputs'
+    else:
+        scored=(data/'scored_records') if (data/'scored_records').is_dir() else data
+    if not scored.is_dir():
+        raise SystemExit(f'missing scored input directory: {scored}')
+    out=args.out or (root/'results'/'qwen3_recomputed')
+    out.mkdir(parents=True, exist_ok=True)
+
+    ref_candidates=[]
+    if data is not None:
+        ref_candidates.append(data/'reference_legacy')
+    ref_candidates.append(root/'reference_legacy')
+    ref=next((r for r in ref_candidates if r.is_dir()),None)
+    if ref is None:
+        raise SystemExit('missing reference_legacy/ directory')
+
     mainrows=read_gz(scored/'main_scored_items_methods_v2.jsonl.gz')
-    # paired dual-judge table ships in package A
-    paired_path=root/'results'/'dual_judge'/'paired_main_3600_latest.csv'
-    if not paired_path.is_file():
-        paired_path=scored/'paired_main_3600_latest.csv'
-    if not paired_path.is_file():
-        raise SystemExit(f'missing paired_main_3600_latest.csv')
-    paired=read_csv(paired_path)
     robust=read_gz(scored/'robustness_scored_items_methods_v2.jsonl.gz')
-    # Internal-only files absent from both public packages: treat as optional
-    oldsum_path=scored/'robustness_120_task_setting_results_methods_v2.csv'
-    if not oldsum_path.is_file():
-        oldsum_path=data/'robustness_120_task_setting_results_methods_v2.csv'
-    if oldsum_path.is_file():
-        oldsum=read_csv(oldsum_path)
-    else:
-        print('WARNING: robustness_120_task_setting_results_methods_v2.csv not in public packages; robustness summary audit limited')
-        oldsum=[]
-    if ref and (ref/'mode_paired_contrasts_methods_v2.csv').is_file():
-        legacy=read_csv(ref/'mode_paired_contrasts_methods_v2.csv')
-    else:
-        print('WARNING: mode_paired_contrasts_methods_v2.csv not in public packages; skipping legacy mode audit')
-        legacy=[]
+
+    paired_candidates=[root/'results'/'dual_judge'/'paired_main_3600_latest.csv',scored/'paired_main_3600_latest.csv',root/'inputs'/'paired_main_3600_latest.csv']
+    paired_path=next((p for p in paired_candidates if p.is_file()),None)
+    if paired_path is None:
+        raise SystemExit('missing paired_main_3600_latest.csv')
+    paired=read_csv(paired_path)
+
+    oldsum_candidates=[scored/'robustness_120_task_setting_results_methods_v2.csv',root/'inputs'/'robustness_120_task_setting_results_methods_v2.csv']
+    if data is not None:
+        oldsum_candidates.insert(1,data/'robustness_120_task_setting_results_methods_v2.csv')
+    oldsum_path=next((p for p in oldsum_candidates if p.is_file()),None)
+    if oldsum_path is None:
+        raise SystemExit('missing robustness_120_task_setting_results_methods_v2.csv')
+    oldsum=read_csv(oldsum_path)
+
+    legacy_path=ref/'mode_paired_contrasts_methods_v2.csv'
+    if not legacy_path.is_file():
+        raise SystemExit(f'missing {legacy_path}')
+    legacy=read_csv(legacy_path)
+
     if len(mainrows)!=19800:raise ValueError(f'main rows {len(mainrows)}')
     if len(paired)!=3600:raise ValueError(f'paired main {len(paired)}')
-    mode=recalc_mode(mainrows,out,args.bootstrap,args.signflips,args.seed);profile,gdesc=rebuild_profile(mainrows,paired,out,args.bootstrap,args.seed);rob=audit_robustness(robust,oldsum,out);audit=legacy_audit(mode,legacy,out) if legacy else []
+    if len(robust)!=7425:raise ValueError(f'robustness rows {len(robust)}')
+    if len(oldsum)!=120:raise ValueError(f'robustness summary rows {len(oldsum)}')
+    if len(legacy)!=15:raise ValueError(f'legacy mode rows {len(legacy)}')
+
+    mode=recalc_mode(mainrows,out,args.bootstrap,args.signflips,args.seed)
+    profile,gdesc=rebuild_profile(mainrows,paired,out,args.bootstrap,args.seed)
+    rob=audit_robustness(robust,oldsum,out)
+    legacy_audit(mode,legacy,out)
     write_csv(out/'holm_family_audit.csv',[{'family_id':'qwen3_within_model_constrained_15','n_tests':15,'scope':'Qwen3 Thinking vs Non-Thinking across five constrained tasks and three prompting conditions','correction':'Holm','analysis_role':'PRESPECIFIED_WITHIN_MODEL_CONFIGURATION_FAMILY'}])
     status={'status':'COMPLETE','policy_id':'METHODS_3_5_ALIGNMENT_4_3_20260915','bootstrap_resamples':args.bootstrap,'signflip_resamples':args.signflips,'seed':args.seed,'qwen3_mode_contrasts':len(mode),'qwen3_mode_holm_family_size':15,'qwen3_zero_shot_profile_rows':len(profile),'qwen3_generation_profile_rows_latest':6,'qwen3_generation_descriptive_contrasts':len(gdesc),'robustness_scored_rows':len(robust),'robustness_task_setting_rows':len(oldsum),'robustness_panel_items':rob['panel_rows'],'robustness_final_delivery_failures':rob['failures'],'qwen3_nonthinking_base_t07_identical_outputs':rob['duplicate_outputs_qwen3_nt_base_vs_t07'],'generation_semantic_missing_pairs':rob['generation_semantic_missing_pairs'],'structuring_semantic_missing_pairs':rob['structuring_semantic_missing_pairs'],'notes':['No model inference or LLM judging was rerun.','No CNHI or BERTScore values were recomputed; current Methods-V2 item scores and archived semantic-pair results are reused.','The 15 constrained Qwen3 configuration contrasts are recalculated with Methods-3.5-consistent tests and one Holm family.','The six Qwen3 generation profile cells are replaced with the latest GPT-5.5/Kimi K2.6 dual-LLM means.','Qwen3-8B Non-Thinking T07_R5 is marked as duplicate of BASE_R5 and not independent evidence.','Ten Qwen3 Thinking T02_R5 records are retained as final-delivery failures, not missing observations.']}
-    write_json(out/'RECALC_STATUS.json',status);print(json.dumps(status,ensure_ascii=False,indent=2))
+    write_json(out/'RECALC_STATUS.json',status)
+    print(json.dumps(status,ensure_ascii=False,indent=2))
 if __name__=='__main__':main()

@@ -1,18 +1,19 @@
-# Release asset
+# Formal-records release asset
 
-Large formal outputs and item-level scored records are distributed as the
-version-linked GitHub Release asset:
+The matching large-output archive is distributed as a GitHub Release asset rather than committed to Git history.
 
-- **Asset:** `aslib-formal-records-v1.0.3-reviewer-complete.zip`
-- **SHA-256:** `cd6e4de69b829e6d05969fe4612a5e48ac2a4c4f7e046e6832778e5e8636563b`
+- **Asset:** `aslib-formal-records-v1.0.4-reviewer-complete.zip`
+- **SHA-256:** `9ac45eb83179f8e8978b1e633d2d264b1d110fb55b42b50355f917750081deb1`
 
-After download:
+The asset contains the raw model-output families used in the reported analyses and the complete item-level scored-record archive.
+
+Example:
 
 ```bash
-gh release download <tag> -p aslib-formal-records-v1.0.3-reviewer-complete.zip
-unzip aslib-formal-records-v1.0.3-reviewer-complete.zip
-python code/recompute_zero_shot.py \
-  --data-dir path/to/aslib-formal-records-v1.0.3-reviewer-complete \
+gh release download <tag> -p aslib-formal-records-v1.0.4-reviewer-complete.zip
+unzip aslib-formal-records-v1.0.4-reviewer-complete.zip
+python3 code/recompute_zero_shot.py \
+  --data-dir path/to/aslib-formal-records-v1.0.4-reviewer-complete \
   --out results/recomputed_zero_shot
 ```
 

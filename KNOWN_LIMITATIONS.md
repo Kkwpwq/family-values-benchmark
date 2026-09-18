@@ -1,7 +1,7 @@
-# Known limitations
+# Known reproducibility limits
 
-1. Provider-side API revisions are not always exposed; blank revision fields are retained, never invented.
-2. Some local model manifests lack immutable weight hashes or repository revisions; blanks are kept as-is.
-3. Two internal reference tables are absent from both public packages and are optional in scripts: `robustness_120_task_setting_results_methods_v2.csv` and `mode_paired_contrasts_methods_v2.csv` (also `panel72_scoring.jsonl` for one generation-sensitivity path).
-4. Completed H1/H2 individual human ratings are not in this minimal package; guidelines, blinded materials, and design manifests are public.
-5. Length/structure compliance checks are separate diagnostics and are not further weighted quality dimensions (see `configs/generation_rubrics.json`).
+1. Provider-side API revisions are not exposed for every API call. Where a concrete provider model identifier was retained, it is reported; no unobserved provider revision is inferred.
+2. Some local model records do not contain immutable weight-byte hashes or repository commit revisions. The retained checkpoint/inventory fingerprint and recorded access/load time are reported instead; blank revision fields are not back-filled.
+3. Completed H1/H2 individual ratings are not included in the public package. Human-validation design, guidelines, blinded materials, and sampling manifests are public; aggregate reliability results are reported in the manuscript.
+4. Automatic-analysis reproducibility is stronger than provider-side model-weight reproducibility: an API provider may change infrastructure behind a stable model alias, and this package cannot reconstruct provider-side state that was not exposed at execution time.
+5. Length/structure compliance checks are separate diagnostics and are not additional weighted generation-quality dimensions; see `configs/generation_rubrics.json`.
