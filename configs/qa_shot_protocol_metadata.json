@@ -1,0 +1,18 @@
+{
+  "protocol_id": "qa45_fixed_all_models_0_1_3shot",
+  "test_item_count": 100,
+  "development_item_count": 20,
+  "fixed_demonstration_item_count": 3,
+  "development_included_in_primary_results": false,
+  "fixed_demonstration_ids": [
+    "QA45-DEMO-01",
+    "QA45-DEMO-02",
+    "QA45-DEMO-03"
+  ],
+  "constraints": [
+    "main_qa_fixed_demonstrations_are_disjoint_from_development_and_test",
+    "one_shot_demo_is_the_first_three_shot_demo",
+    "instructions_demo_answers_and_order_are_identical_across_all_model_configurations",
+    "no_model_specific_demo_selection_after_score_inspection"
+  ]
+}

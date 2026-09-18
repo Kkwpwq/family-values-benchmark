@@ -1,0 +1,26 @@
+{
+  "model_id": "Doubao",
+  "source_id": "Doubao-Seed-1.6",
+  "deployment": "third_party_openai_compatible",
+  "provider_model_id": "doubao-seed-1-6-250615",
+  "source_revision": null,
+  "checkpoint_fingerprint_sha256": null,
+  "reasoning_mode": "non-thinking",
+  "dtype": null,
+  "runtime_versions": {
+    "transformers": null,
+    "torch": null
+  },
+  "generation": {
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "max_tokens": 2048,
+    "seed_supported": false
+  },
+  "max_output_tokens": 2048,
+  "context_limit": null,
+  "system_prompt_policy": {
+    "main_non_qa_tasks": null,
+    "main_qa_v4_5": "configs/qa_system_prompt.txt"
+  }
+}

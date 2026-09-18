@@ -1,0 +1,23 @@
+{
+  "model_id": "Mistral-7B-Instruct-v0.3",
+  "source_id": "mistralai/Mistral-7B-Instruct-v0.3",
+  "deployment": "local",
+  "provider_model_id": null,
+  "source_revision": null,
+  "checkpoint_fingerprint_sha256": "07b9a9ecdb146c42de34030471900aaf15c272f8e385cd0d20e601b037e930c7",
+  "reasoning_mode": "none",
+  "dtype": "bfloat16",
+  "runtime_versions": {
+    "transformers": "4.57.3",
+    "torch": "2.7.1+cu126"
+  },
+  "generation": {
+    "do_sample": false
+  },
+  "max_output_tokens": 2048,
+  "context_limit": 32768,
+  "system_prompt_policy": {
+    "main_non_qa_tasks": null,
+    "main_qa_v4_5": "configs/qa_system_prompt.txt"
+  }
+}

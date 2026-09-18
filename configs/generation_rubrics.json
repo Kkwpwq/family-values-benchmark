@@ -1,0 +1,26 @@
+{
+  "version": "1.0.3",
+  "scale": [
+    0,
+    100
+  ],
+  "aggregation": "weighted sum per judge; arithmetic mean of GPT-5.5 and Kimi K2.6 weighted totals",
+  "story_generation": {
+    "family_value_alignment": 0.4,
+    "plot_plausibility": 0.25,
+    "character_consistency": 0.2,
+    "emotional_expression": 0.15
+  },
+  "text_rewriting": {
+    "content_fidelity": 0.2,
+    "target_style_fit": 0.5,
+    "clarity": 0.2,
+    "emotional_value_expression": 0.1
+  },
+  "story_continuation": {
+    "family_value_alignment": 0.3,
+    "contextual_fit": 0.15,
+    "logical_coherence": 0.35,
+    "clarity": 0.2
+  }
+}

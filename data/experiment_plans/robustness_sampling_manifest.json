@@ -1,0 +1,561 @@
+{
+  "extension_version": "4.6.0-cross-task-diagnostics-rc1",
+  "panel": "cross_task_robustness",
+  "sampling_seed": 4601,
+  "repeat_seeds": [
+    1101,
+    1102,
+    1103,
+    1104,
+    1105
+  ],
+  "total_items": 99,
+  "tasks": {
+    "classification": {
+      "n": 11,
+      "selected": [
+        {
+          "item_id": "CLS-012",
+          "sampling_stratum": "忠",
+          "input_sha256": "9d82ddec1fc3bbb0d451e4b7bc1320c368a17d6847f2ddb1c6512074f6dfada0"
+        },
+        {
+          "item_id": "CLS-022",
+          "sampling_stratum": "省",
+          "input_sha256": "b714fcf2b171895e0cef10d458588472439d0ff680d5efc2eda463dda6044785"
+        },
+        {
+          "item_id": "CLS-024",
+          "sampling_stratum": "孝",
+          "input_sha256": "19a246742e9b955dbc4921900d42163293d9841c1178e888adacca38b59353cb"
+        },
+        {
+          "item_id": "CLS-029",
+          "sampling_stratum": "勇",
+          "input_sha256": "d7fd4cd5a20d74f64930eb2aed688f966069f65284c8124a9d379207b4dd34f2"
+        },
+        {
+          "item_id": "CLS-043",
+          "sampling_stratum": "慎",
+          "input_sha256": "391802f95c894d60062ac7281e3b9359c4abbc5216ab701de654bdb370ced91d"
+        },
+        {
+          "item_id": "CLS-047",
+          "sampling_stratum": "悌",
+          "input_sha256": "960b3a8962cf4d8315a4150f86d2fa62358e752b128e3a9d8837f5d168a29acd"
+        },
+        {
+          "item_id": "CLS-050",
+          "sampling_stratum": "恕",
+          "input_sha256": "2fa91538bbba379b6bbe3dc09d4d33bc60c7b9b143c60088b2dd2b738fa2ac26"
+        },
+        {
+          "item_id": "CLS-063",
+          "sampling_stratum": "俭",
+          "input_sha256": "81e270c91fb29b40559f3be10be26df9d05e9a4b8e62b0453d2b2d5642924ba3"
+        },
+        {
+          "item_id": "CLS-064",
+          "sampling_stratum": "让",
+          "input_sha256": "d31475f55a6b0c7025ade36068292d4bc5ce01f8a97fa113c0655d9e7f3b8dad"
+        },
+        {
+          "item_id": "CLS-092",
+          "sampling_stratum": "节",
+          "input_sha256": "7418fbc152b1c29dbce466c579b1f0d03422076b32a7717b93653e586cefb60b"
+        },
+        {
+          "item_id": "CLS-093",
+          "sampling_stratum": "养",
+          "input_sha256": "b28080e3860451bb8728d05f3bce73b33c98f92189cc5f171f059b56069df401"
+        }
+      ]
+    },
+    "reasoning": {
+      "n": 12,
+      "selected": [
+        {
+          "item_id": "REA-003",
+          "sampling_stratum": "不合规",
+          "input_sha256": "ab980985cca5ad6184097889be6d04047435e668612408ed986bfb3b0cd08ec3"
+        },
+        {
+          "item_id": "REA-021",
+          "sampling_stratum": "不合规",
+          "input_sha256": "07870dbd905c033887105466e078d4a02dc5dcc0cf2136e28d1ffc4d766da085"
+        },
+        {
+          "item_id": "REA-027",
+          "sampling_stratum": "合规",
+          "input_sha256": "2c5a23436226f33e14057390efc259b1bbc56ca9a2e30c03338b6a108ff174ab"
+        },
+        {
+          "item_id": "REA-046",
+          "sampling_stratum": "不合规",
+          "input_sha256": "75c2d31adfa618416995dc05027608818628e2fb286b70142f71ec474b41f777"
+        },
+        {
+          "item_id": "REA-048",
+          "sampling_stratum": "合规",
+          "input_sha256": "70fc75961663005958dbefa221b9b6a65c80f84228bc19375631ee6e55f18428"
+        },
+        {
+          "item_id": "REA-058",
+          "sampling_stratum": "合规",
+          "input_sha256": "9f3e4655a1abd31552640fbe58d8b876ca12e2551064b4a25652ae071420f297"
+        },
+        {
+          "item_id": "REA-063",
+          "sampling_stratum": "合规",
+          "input_sha256": "fe27d4b675fbc9887e98b9b2e8dbcc719045d9086e55a8f71405e064c452eb9f"
+        },
+        {
+          "item_id": "REA-064",
+          "sampling_stratum": "不合规",
+          "input_sha256": "6b51eb557b4418c2b54dd3f6f6ec2f3c3281af445e8370fe87aba957227d9df7"
+        },
+        {
+          "item_id": "REA-069",
+          "sampling_stratum": "合规",
+          "input_sha256": "b2473551a968ce7ac115023ce82659f6b0985a7b2144122f3e10064942ff3011"
+        },
+        {
+          "item_id": "REA-070",
+          "sampling_stratum": "不合规",
+          "input_sha256": "3183c76512f7d7ffbeea762e3311607a4dc66c519621c6f520c71c7ad97304d5"
+        },
+        {
+          "item_id": "REA-094",
+          "sampling_stratum": "不合规",
+          "input_sha256": "f7d1f1ff08a14b465098947c84978019054d38a56f1b0383147a663b84bd8b4e"
+        },
+        {
+          "item_id": "REA-099",
+          "sampling_stratum": "合规",
+          "input_sha256": "851ca6081ce504feaebcd5975bfe6282ef4dcbc4091f66b9c5990c41f63e1b9c"
+        }
+      ]
+    },
+    "structuring": {
+      "n": 15,
+      "selected": [
+        {
+          "item_id": "STR-007",
+          "sampling_stratum": "教育管理",
+          "input_sha256": "c0c458a54c3840ed5de359cdaa69890785936df3aa0c7b5e11ff278867be32bd"
+        },
+        {
+          "item_id": "STR-017",
+          "sampling_stratum": "纠纷调解",
+          "input_sha256": "07cd98d4b861441b99a6e605d1368d7f56107e77648d150b5e40d2ac979ff9cf"
+        },
+        {
+          "item_id": "STR-019",
+          "sampling_stratum": "灾害应对",
+          "input_sha256": "01a0e1c700f383f2c60770ac71e4ac786f8f24e86feb741357736f55fc440b3d"
+        },
+        {
+          "item_id": "STR-020",
+          "sampling_stratum": "祭祀礼仪",
+          "input_sha256": "8ca2e4aef01dff267076ec3ca127225337cd0ceb3e8a05a29e74841f62a6d3cd"
+        },
+        {
+          "item_id": "STR-034",
+          "sampling_stratum": "凭证管理",
+          "input_sha256": "48bebd9e2bf45f89a288adf3593cae2a240134dfc79454e037b1e78ef4eb305f"
+        },
+        {
+          "item_id": "STR-048",
+          "sampling_stratum": "行为规范",
+          "input_sha256": "08feabe3e8970cc1761033868c650a3ccdff015c83a5f521374b195503da807b"
+        },
+        {
+          "item_id": "STR-058",
+          "sampling_stratum": "家庭伦理",
+          "input_sha256": "917e4aa75ed3030eea87e48c0ea26bd8bda079f67f735b3e85b619b5fc1abbf7"
+        },
+        {
+          "item_id": "STR-064",
+          "sampling_stratum": "家庭教育",
+          "input_sha256": "1fdecdd8fc38595a95d4fed98f995429f2d2f43d67e495ab9b0f80f10623454a"
+        },
+        {
+          "item_id": "STR-070",
+          "sampling_stratum": "薪酬管理",
+          "input_sha256": "b4797d9a7b07dc9eff928ef34a2867c70982ef9dbceeb8a33c157733ec745ffa"
+        },
+        {
+          "item_id": "STR-072",
+          "sampling_stratum": "待遇标准",
+          "input_sha256": "4e2cd2423e1a938451dd36e09fd08f459300391c725f80a2e4fe4a440f89e41b"
+        },
+        {
+          "item_id": "STR-075",
+          "sampling_stratum": "管理权限",
+          "input_sha256": "638cf02eea004cc3d3b2f7b0af43f6411f1f04640a623d4ebc3bf658709f9cc2"
+        },
+        {
+          "item_id": "STR-079",
+          "sampling_stratum": "物资管理",
+          "input_sha256": "3fc7595e8f494918d7c710e3020d6fe425f6d85f8ee4225fd89e46c83d23e1b4"
+        },
+        {
+          "item_id": "STR-088",
+          "sampling_stratum": "族籍管理",
+          "input_sha256": "a9e79bd556cf68e18605b4ce3698dcc9429cd627f127067af1906c27ae0bef25"
+        },
+        {
+          "item_id": "STR-094",
+          "sampling_stratum": "权力规范",
+          "input_sha256": "9d4bd045888e109b887b3dc12f907e6ae0d1c04f6c2812d09cc807e18f4431ca"
+        },
+        {
+          "item_id": "STR-095",
+          "sampling_stratum": "权力监督",
+          "input_sha256": "fef50025e849a9c9bb88aac999d7289e3cbe6652781f4d005379d4da7fdeaf8d"
+        }
+      ]
+    },
+    "relationship": {
+      "n": 12,
+      "selected": [
+        {
+          "item_id": "REL-001",
+          "sampling_stratum": "source-adapted:spouse_children",
+          "input_sha256": "b427288e4006f4eb7881f66e1abe92af9cf9c2d2015ceaf594bbc48395e7e723"
+        },
+        {
+          "item_id": "REL-003",
+          "sampling_stratum": "source-adapted:spouse_children",
+          "input_sha256": "a870fce9b819475608284c9aa9d34b1236f4a9f700f3d39c5a2edddeba5c01f1"
+        },
+        {
+          "item_id": "REL-004",
+          "sampling_stratum": "source-adapted:spouse_children",
+          "input_sha256": "1e5c5af890567e37dff1fb7f485f20641845170b2e1289d3ab62d3d1dcddf368"
+        },
+        {
+          "item_id": "REL-007",
+          "sampling_stratum": "source-adapted:spouse_children",
+          "input_sha256": "eaa3fb9390c982cea4d69833e533d57894a44dfec053dba49fb444acf3423b51"
+        },
+        {
+          "item_id": "REL-014",
+          "sampling_stratum": "source-adapted:other_direct",
+          "input_sha256": "eedea4644ec5db2e3941750ab4546db4ed1a78377ad50cd420aa21c3aa464ac0"
+        },
+        {
+          "item_id": "REL-026",
+          "sampling_stratum": "source-adapted:spouse_children",
+          "input_sha256": "5c5b229f022015d90029ff57912b5105e21517de9e10ffedc2d500c033c9317b"
+        },
+        {
+          "item_id": "REL-027",
+          "sampling_stratum": "source-adapted:spouse_children",
+          "input_sha256": "763e1af9127abdd1ac4e7cc5037ba444f14cb1a5bda1d28710c337860c6b1a02"
+        },
+        {
+          "item_id": "REL-035",
+          "sampling_stratum": "source-adapted:ambiguity_multiple_spouses",
+          "input_sha256": "fbdfcc4688946228b82b7a232e2a7d0932d6df13dd88a6524afa06486fb4f739"
+        },
+        {
+          "item_id": "REL-039",
+          "sampling_stratum": "source-adapted:other_direct",
+          "input_sha256": "f0a0d9ad19f8c677111358ccd4510556adf86978ce0012cb0077c1c2902e987a"
+        },
+        {
+          "item_id": "REL-044",
+          "sampling_stratum": "controlled-synthetic-challenge:spouse_children",
+          "input_sha256": "0adbbb172fcff3b587d3100182fa352b7fc5f83cb4f786a292d956fec28a6034"
+        },
+        {
+          "item_id": "REL-047",
+          "sampling_stratum": "controlled-synthetic-challenge:spouse_children",
+          "input_sha256": "91b08a7afafa645f1e506f2d99250c8994eaad51e6fbe67a7f54a39cec79a7ee"
+        },
+        {
+          "item_id": "REL-048",
+          "sampling_stratum": "controlled-synthetic-challenge:explicit_no_children",
+          "input_sha256": "f661fcf897121864a3827fa2c613f06e0caf9ca130889f616a5061259354287b"
+        }
+      ]
+    },
+    "qa_v4_5": {
+      "n": 15,
+      "selected": [
+        {
+          "item_id": "QA45-TEST-003",
+          "sampling_stratum": "multi_constraint",
+          "input_sha256": "6a3adf3e1026158ff32c6a51247586d70a2bf844fa59f9cfe88f262138c5c36e"
+        },
+        {
+          "item_id": "QA45-TEST-012",
+          "sampling_stratum": "multi_constraint",
+          "input_sha256": "42be2d3d9320589e1f199c1a3a9720e8bd1572c4c7ea46df7f222e239c598026"
+        },
+        {
+          "item_id": "QA45-TEST-031",
+          "sampling_stratum": "paraphrase_inference",
+          "input_sha256": "be2044fb5cdd3e4b473d9df1f081f7080093c1a04f9f911b3de5164d4be42fc6"
+        },
+        {
+          "item_id": "QA45-TEST-038",
+          "sampling_stratum": "historical_modern_distinction",
+          "input_sha256": "d925a2a45b5976a416a679120cb1078f1f95fa709f510a0c2be452718f3d68a2"
+        },
+        {
+          "item_id": "QA45-TEST-039",
+          "sampling_stratum": "historical_modern_distinction",
+          "input_sha256": "fecf0d1c8731771f936893c462c1329fde1393bf60f705719be6514e40227a88"
+        },
+        {
+          "item_id": "QA45-TEST-045",
+          "sampling_stratum": "negation_scope",
+          "input_sha256": "2f638565f291ed49d4f2de159d3e1b2292b2cafb76aa32f6762bd6ad702e477b"
+        },
+        {
+          "item_id": "QA45-TEST-055",
+          "sampling_stratum": "negation_scope",
+          "input_sha256": "0d9fcc5238dfaf0750f6705003fabaea56f8e82c972c5a1c8bfc371b8609b5c0"
+        },
+        {
+          "item_id": "QA45-TEST-056",
+          "sampling_stratum": "insufficient_evidence",
+          "input_sha256": "2e38ecfc50b1d57e41e72613ef28d2d87942a71d3ff6f499e4b3a7b8fa05557d"
+        },
+        {
+          "item_id": "QA45-TEST-061",
+          "sampling_stratum": "paraphrase_inference",
+          "input_sha256": "024a4ae86bce4ae06fb4f3e231cec256d3ab5cdabf71a77f3dbd08b7aebc96de"
+        },
+        {
+          "item_id": "QA45-TEST-063",
+          "sampling_stratum": "multi_constraint",
+          "input_sha256": "e4b8e2bb24103c270263545d6444ff83d869e545a51f0a64732c0f6754ad0fbd"
+        },
+        {
+          "item_id": "QA45-TEST-067",
+          "sampling_stratum": "insufficient_evidence",
+          "input_sha256": "bade8b0d319c8454a4b2c89468182be88cb2ac71ffaf335980209f0ec05a1245"
+        },
+        {
+          "item_id": "QA45-TEST-075",
+          "sampling_stratum": "negation_scope",
+          "input_sha256": "e5f15e4afc32c7af518e49903569108fcf4ee71f15a294f4011ec8c3ada6fcc6"
+        },
+        {
+          "item_id": "QA45-TEST-087",
+          "sampling_stratum": "insufficient_evidence",
+          "input_sha256": "b59d504d3100f9a164fe127cac6ef833352d33c96750fbf4bd1dabde8370c672"
+        },
+        {
+          "item_id": "QA45-TEST-091",
+          "sampling_stratum": "paraphrase_inference",
+          "input_sha256": "b20ec7d676ccf3bba9ff05400ba7f410d9e204af235cf9127ae61825c1ea5a36"
+        },
+        {
+          "item_id": "QA45-TEST-098",
+          "sampling_stratum": "historical_modern_distinction",
+          "input_sha256": "a850b2108e23b6ddaa79e83c5122ad1292667fc9e1ff55274bc5a7ff57033eca"
+        }
+      ]
+    },
+    "story_generation": {
+      "n": 11,
+      "selected": [
+        {
+          "item_id": "GEN-004",
+          "sampling_stratum": "忠",
+          "input_sha256": "40ab5a0698d99539a64bde2697a4f05987bbac19b70082b6517e8224e8281d24"
+        },
+        {
+          "item_id": "GEN-012",
+          "sampling_stratum": "孝",
+          "input_sha256": "041f97df040a9257d05d0591171d93cecc294b853681f269eb2674076c1ed9f5"
+        },
+        {
+          "item_id": "GEN-022",
+          "sampling_stratum": "悌",
+          "input_sha256": "ed5c634cbc91ccf48236d4684a10e733821bc812d32dcb170454ea72aa8ba9c5"
+        },
+        {
+          "item_id": "GEN-031",
+          "sampling_stratum": "节",
+          "input_sha256": "c3fae8f13e8875c8641e53aaddf02614c06de726914ab0eeda02dca806300443"
+        },
+        {
+          "item_id": "GEN-041",
+          "sampling_stratum": "养",
+          "input_sha256": "91905576fcbdf60bfb7f3eee6d5f18ce64ee4cc95c6448ab13c92a8072c973a2"
+        },
+        {
+          "item_id": "GEN-047",
+          "sampling_stratum": "恕",
+          "input_sha256": "30cf15b84ac10b69db04568783e351a273ea10357f69ff4f3994c2f21132e854"
+        },
+        {
+          "item_id": "GEN-064",
+          "sampling_stratum": "勇",
+          "input_sha256": "5b1528fee8e9ee38d6c4f7d7651eb44dfa578b30ed09fdf4fb50e5842d13f639"
+        },
+        {
+          "item_id": "GEN-069",
+          "sampling_stratum": "俭",
+          "input_sha256": "ac762dbbe98bef1227ecb60b8b42f1c687b927b0a69b7e7925dc08e40bc0ffda"
+        },
+        {
+          "item_id": "GEN-077",
+          "sampling_stratum": "让",
+          "input_sha256": "5832fb668ff34dc27047b21b4e41898505d341c7060fcdd1eeb668139dc76b10"
+        },
+        {
+          "item_id": "GEN-091",
+          "sampling_stratum": "慎",
+          "input_sha256": "4f24a901017b5ce196df7eb0d59683e07e71aaec3ad3076bf4ba20dbd7d735cc"
+        },
+        {
+          "item_id": "GEN-095",
+          "sampling_stratum": "省",
+          "input_sha256": "65662fc560c0975a0a981d57c48dae9641cb396dde113763e08e6a6aa290132e"
+        }
+      ]
+    },
+    "rewriting": {
+      "n": 12,
+      "selected": [
+        {
+          "item_id": "REW-001",
+          "sampling_stratum": "儿童故事风格",
+          "input_sha256": "1223a9859c9334cbc0c75dc0bf2e81ac1a02645b1ace6b3fd81163602f16c790"
+        },
+        {
+          "item_id": "REW-014",
+          "sampling_stratum": "短视频解说风格",
+          "input_sha256": "27213516c4bd97d25d7cbb8e15ded475908a96139ac84b6c4617cc03ac18d345"
+        },
+        {
+          "item_id": "REW-023",
+          "sampling_stratum": "青年励志风格",
+          "input_sha256": "26b4a73c961916edb9559f1639f7f4171ad3fa731a737d738b61e84bdc7e0c9a"
+        },
+        {
+          "item_id": "REW-042",
+          "sampling_stratum": "短视频解说风格",
+          "input_sha256": "87a450d2a1952e1a10d5ccecb7f609c2131970c2e8987949fecb7bffbb7095e0"
+        },
+        {
+          "item_id": "REW-044",
+          "sampling_stratum": "诗性散文风格",
+          "input_sha256": "19be496af891eb42948f6aaad02164819f6343c1d010df0c7c93c665c7472987"
+        },
+        {
+          "item_id": "REW-046",
+          "sampling_stratum": "短视频解说风格",
+          "input_sha256": "c74cf70211ba6e29307b48b4f1b9bb9471d5edfa71e6c6ca9f836e65c6d834b9"
+        },
+        {
+          "item_id": "REW-047",
+          "sampling_stratum": "青年励志风格",
+          "input_sha256": "dfc3b75d0d554a005f880eaffe2577d7b887abc4720d3a5d8a69922f49a9710c"
+        },
+        {
+          "item_id": "REW-048",
+          "sampling_stratum": "诗性散文风格",
+          "input_sha256": "3e89c6ea4ba0038effcd9e2f2190103b102a36ff87ce716611b67591be88dfab"
+        },
+        {
+          "item_id": "REW-049",
+          "sampling_stratum": "儿童故事风格",
+          "input_sha256": "23c5ebdc862b0b7946ed1f2ae31c162833be743b7577ed9a36097e2f3a93205b"
+        },
+        {
+          "item_id": "REW-055",
+          "sampling_stratum": "青年励志风格",
+          "input_sha256": "1f7d4ba992380facdf42a8af0bb2f3a209a119f2b7bd38423d5d734f922c3550"
+        },
+        {
+          "item_id": "REW-077",
+          "sampling_stratum": "儿童故事风格",
+          "input_sha256": "d7f4d491cca60536d21192ca817fb56dafc972f853510e329647293ea3439f15"
+        },
+        {
+          "item_id": "REW-100",
+          "sampling_stratum": "诗性散文风格",
+          "input_sha256": "491e5bcc88f5c1c937db1b4eecf57d7f3af12259d9e0cf52b3246bb7b1dc6f12"
+        }
+      ]
+    },
+    "continuation": {
+      "n": 11,
+      "selected": [
+        {
+          "item_id": "CON-005",
+          "sampling_stratum": "忠",
+          "input_sha256": "8b2b23eb973530c7fc602bd5cbafa8a90ce3e9981dba6fd59ba4ce5691f9cdce"
+        },
+        {
+          "item_id": "CON-011",
+          "sampling_stratum": "孝",
+          "input_sha256": "5bfe4e113cca774bcb32bab01fe59b16dd4d9f27146475a049f78bf9121e03e4"
+        },
+        {
+          "item_id": "CON-020",
+          "sampling_stratum": "悌",
+          "input_sha256": "efcbeb7636b52872fa38c3eba3d97cab64b99e49fd74e55d518562b033ac99a9"
+        },
+        {
+          "item_id": "CON-035",
+          "sampling_stratum": "节",
+          "input_sha256": "e9ce0642738100ef3df468cf9c49772ea48a5e99e0a1377d5af0de889dc380e5"
+        },
+        {
+          "item_id": "CON-042",
+          "sampling_stratum": "养",
+          "input_sha256": "6a61ad88fd7ee0742a78e4b037328096f303156504e164006dc89a8e4de84a07"
+        },
+        {
+          "item_id": "CON-050",
+          "sampling_stratum": "恕",
+          "input_sha256": "ea2fdeb472e81124c7ee480228af37ceba1495afeeb5549a067952d5f36b0477"
+        },
+        {
+          "item_id": "CON-060",
+          "sampling_stratum": "勇",
+          "input_sha256": "968323b9676538e45e467f7662cd249710a848d28cb9a9abf1cb8a644aa5857a"
+        },
+        {
+          "item_id": "CON-065",
+          "sampling_stratum": "俭",
+          "input_sha256": "817566bae3011ec5e6e185a6d2e00fd0061e69460fc1aebb85f04c9848c49f91"
+        },
+        {
+          "item_id": "CON-076",
+          "sampling_stratum": "让",
+          "input_sha256": "a0e37c842f280fbbfab0c4df7f13a41ac4765e9343c34542d46eec00907de11d"
+        },
+        {
+          "item_id": "CON-086",
+          "sampling_stratum": "慎",
+          "input_sha256": "fd36ed93ca2bf8cc130220811652d84f0899d40455f740c14920e7f9a53b542c"
+        },
+        {
+          "item_id": "CON-100",
+          "sampling_stratum": "省",
+          "input_sha256": "111179ed7677b459335095958c173583fdc99c7929f3a4443ee33dd1bb494ed5"
+        }
+      ]
+    }
+  },
+  "relationship_source_type": {
+    "source-adapted": 9,
+    "controlled-synthetic-challenge": 3
+  },
+  "qa_ability_counts": {
+    "multi_constraint": 3,
+    "paraphrase_inference": 3,
+    "historical_modern_distinction": 3,
+    "negation_scope": 3,
+    "insufficient_evidence": 3
+  }
+}

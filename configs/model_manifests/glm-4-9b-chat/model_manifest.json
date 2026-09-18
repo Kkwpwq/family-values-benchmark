@@ -1,0 +1,24 @@
+{
+  "model_id": "glm-4-9b-chat",
+  "source_id": "zai-org/glm-4-9b-chat",
+  "deployment": "local",
+  "provider_model_id": null,
+  "source_revision": null,
+  "checkpoint_fingerprint_sha256": "05ceacec9f1f20e723597b8c99ee29b42ce42ad34e86001f4664e367190df329",
+  "reasoning_mode": "none",
+  "dtype": "bfloat16",
+  "runtime_versions": {
+    "transformers": "4.44.2",
+    "torch": "2.7.1+cu126"
+  },
+  "generation": {
+    "do_sample": false,
+    "use_cache": true
+  },
+  "max_output_tokens": 2048,
+  "context_limit": 128000,
+  "system_prompt_policy": {
+    "main_non_qa_tasks": null,
+    "main_qa_v4_5": "configs/qa_system_prompt.txt"
+  }
+}

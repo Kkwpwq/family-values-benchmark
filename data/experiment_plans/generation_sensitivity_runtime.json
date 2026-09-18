@@ -1,0 +1,283 @@
+{
+  "profile": "formal11",
+  "expected_formal_models": 11,
+  "formal_model_order": [
+    "Baichuan2-7B-Chat",
+    "deepseek-llm-7b-chat",
+    "glm-4-9b-chat",
+    "internlm2_5-7b-chat",
+    "chatglm3-6b",
+    "Qwen2.5-7B-Instruct",
+    "Mistral-7B-Instruct-v0.3",
+    "Qwen3-8B-NonThinking",
+    "QwQ-32B",
+    "DeepSeek-R1-Distill-Qwen-32B",
+    "Doubao"
+  ],
+  "formal_model_resolution": "top_level:primary_model_names",
+  "external_model": "Doubao",
+  "models": {
+    "Baichuan2-7B-Chat": {
+      "enabled": true,
+      "primary": true,
+      "deployment": "local",
+      "source_id": "baichuan-inc/Baichuan2-7B-Chat",
+      "source_revision": "",
+      "adapter": "baichuan",
+      "dtype": "bfloat16",
+      "device_map": "single_cuda",
+      "use_fast_tokenizer": false,
+      "reasoning_mode": "none",
+      "generation": {
+        "do_sample": false,
+        "use_cache": true
+      },
+      "runtime_env": "baichuan_4292",
+      "required_transformers": "4.29.2",
+      "compatibility_note": "Pinned to Transformers 4.29.2 to match checkpoint remote-code generation/cache API.",
+      "max_new_tokens": 2048,
+      "repeat_seeds": [
+        1101
+      ]
+    },
+    "deepseek-llm-7b-chat": {
+      "enabled": true,
+      "primary": true,
+      "deployment": "local",
+      "source_id": "deepseek-ai/deepseek-llm-7b-chat",
+      "source_revision": "",
+      "adapter": "hf_chat_template",
+      "dtype": "bfloat16",
+      "device_map": "auto",
+      "reasoning_mode": "none",
+      "generation": {
+        "do_sample": false
+      },
+      "runtime_env": "modern_4573",
+      "required_transformers": "4.57.3",
+      "compatibility_note": "Modern runtime pinned to Transformers 4.57.3; validated with this checkpoint family.",
+      "max_new_tokens": 2048,
+      "repeat_seeds": [
+        1101
+      ]
+    },
+    "glm-4-9b-chat": {
+      "enabled": true,
+      "primary": true,
+      "deployment": "local",
+      "source_id": "zai-org/glm-4-9b-chat",
+      "source_revision": "",
+      "adapter": "hf_chat_template",
+      "dtype": "bfloat16",
+      "device_map": "single_cuda",
+      "reasoning_mode": "none",
+      "generation": {
+        "do_sample": false,
+        "use_cache": true
+      },
+      "runtime_env": "glm4_4442",
+      "required_transformers": "4.44.2",
+      "compatibility_note": "Pinned to Transformers 4.44.2 to match checkpoint remote-code generation/cache API.",
+      "max_new_tokens": 2048,
+      "repeat_seeds": [
+        1101
+      ]
+    },
+    "internlm2_5-7b-chat": {
+      "enabled": true,
+      "primary": true,
+      "deployment": "local",
+      "source_id": "internlm/internlm2_5-7b-chat",
+      "source_revision": "",
+      "adapter": "internlm",
+      "dtype": "float16",
+      "device_map": "single_cuda",
+      "reasoning_mode": "none",
+      "generation": {
+        "do_sample": false,
+        "use_cache": true
+      },
+      "runtime_env": "internlm_4410",
+      "required_transformers": "4.41.0",
+      "compatibility_note": "Pinned to Transformers 4.41.0 to match checkpoint remote-code generation/cache API.",
+      "max_new_tokens": 2048,
+      "repeat_seeds": [
+        1101
+      ]
+    },
+    "chatglm3-6b": {
+      "enabled": true,
+      "primary": true,
+      "deployment": "local",
+      "source_id": "zai-org/chatglm3-6b",
+      "source_revision": "",
+      "adapter": "chatglm3",
+      "model_loader": "auto_model",
+      "dtype": "float16",
+      "device_map": "single_cuda",
+      "reasoning_mode": "none",
+      "generation": {
+        "do_sample": false,
+        "use_cache": true
+      },
+      "runtime_env": "chatglm3_4302",
+      "required_transformers": "4.30.2",
+      "compatibility_note": "Pinned to Transformers 4.30.2 to match checkpoint remote-code generation/cache API.",
+      "max_new_tokens": 2048,
+      "repeat_seeds": [
+        1101
+      ]
+    },
+    "Qwen2.5-7B-Instruct": {
+      "enabled": true,
+      "primary": true,
+      "deployment": "local",
+      "source_id": "Qwen/Qwen2.5-7B-Instruct",
+      "source_revision": "",
+      "adapter": "hf_chat_template",
+      "dtype": "bfloat16",
+      "device_map": "auto",
+      "reasoning_mode": "none",
+      "generation": {
+        "do_sample": false
+      },
+      "runtime_env": "modern_4573",
+      "required_transformers": "4.57.3",
+      "compatibility_note": "Modern runtime pinned to Transformers 4.57.3; validated with this checkpoint family.",
+      "max_new_tokens": 2048,
+      "repeat_seeds": [
+        1101
+      ]
+    },
+    "Mistral-7B-Instruct-v0.3": {
+      "enabled": true,
+      "primary": true,
+      "deployment": "local",
+      "source_id": "mistralai/Mistral-7B-Instruct-v0.3",
+      "source_revision": "",
+      "adapter": "hf_chat_template",
+      "dtype": "bfloat16",
+      "device_map": "auto",
+      "reasoning_mode": "none",
+      "generation": {
+        "do_sample": false
+      },
+      "runtime_env": "modern_4573",
+      "required_transformers": "4.57.3",
+      "compatibility_note": "Modern runtime pinned to Transformers 4.57.3; validated with this checkpoint family.",
+      "max_new_tokens": 2048,
+      "repeat_seeds": [
+        1101
+      ]
+    },
+    "Qwen3-8B-NonThinking": {
+      "enabled": true,
+      "primary": true,
+      "deployment": "local",
+      "source_id": "Qwen/Qwen3-8B",
+      "source_revision": "",
+      "adapter": "qwen3",
+      "dtype": "bfloat16",
+      "device_map": "auto",
+      "reasoning_mode": "non-thinking",
+      "enable_thinking": false,
+      "generation": {
+        "do_sample": true,
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20,
+        "min_p": 0.0
+      },
+      "runtime_env": "modern_4573",
+      "required_transformers": "4.57.3",
+      "compatibility_note": "Modern runtime pinned to Transformers 4.57.3; validated with this checkpoint family.",
+      "max_new_tokens": 2048,
+      "repeat_seeds": [
+        1101
+      ]
+    },
+    "QwQ-32B": {
+      "enabled": true,
+      "primary": true,
+      "deployment": "local",
+      "source_id": "Qwen/QwQ-32B",
+      "source_revision": "",
+      "adapter": "qwq",
+      "dtype": "bfloat16",
+      "device_map": "balanced",
+      "reasoning_mode": "native-reasoning",
+      "max_new_tokens_override": 32768,
+      "generation": {
+        "do_sample": true,
+        "temperature": 0.6,
+        "top_p": 0.95,
+        "top_k": 40,
+        "repetition_penalty": 1.0
+      },
+      "runtime_env": "modern_4573",
+      "required_transformers": "4.57.3",
+      "compatibility_note": "Modern runtime pinned to Transformers 4.57.3; validated with this checkpoint family.",
+      "max_new_tokens": 32768,
+      "repeat_seeds": [
+        1101
+      ]
+    },
+    "DeepSeek-R1-Distill-Qwen-32B": {
+      "enabled": true,
+      "primary": true,
+      "deployment": "local",
+      "source_id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+      "source_revision": "",
+      "adapter": "qwq",
+      "dtype": "bfloat16",
+      "device_map": "balanced",
+      "reasoning_mode": "native-reasoning",
+      "max_new_tokens_override": 32768,
+      "generation": {
+        "do_sample": true,
+        "temperature": 0.6,
+        "top_p": 0.95,
+        "top_k": 0,
+        "repetition_penalty": 1.0
+      },
+      "runtime_env": "deepseek_r1_qwen_4431",
+      "required_transformers": "4.43.1",
+      "compatibility_note": "DeepSeek-R1-Distill-Qwen-32B is derived from Qwen2.5-32B; the checkpoint config declares Transformers 4.43.1. Official DeepSeek-R1 sampling recommendations are temperature=0.6 and top_p=0.95, with no system prompt.",
+      "max_new_tokens": 32768,
+      "repeat_seeds": [
+        1101
+      ]
+    },
+    "Doubao": {
+      "enabled": true,
+      "primary": true,
+      "deployment": "external_api_windows",
+      "source_id": "Doubao-Seed-1.6",
+      "reasoning_mode": "none",
+      "api": {
+        "model_id_env": "DOUBAO_MODEL_ID",
+        "supports_seed": false
+      },
+      "generation": {
+        "do_sample": false,
+        "temperature": 0.0,
+        "top_p": 1.0
+      },
+      "runtime_env": "api",
+      "required_transformers": "provider-managed",
+      "adapter": "openai_chat_api",
+      "max_new_tokens": 2048,
+      "repeat_seeds": [
+        1101
+      ],
+      "external_generation_note": "Generated locally by bundled Doubao OpenAI-compatible API client; API seed unsupported.",
+      "provider_revision_expected": "doubao-seed-1-6-250615",
+      "provider_revision_exposed": false,
+      "provider_identity_note": "Formal generation-sensitivity records returned the requested alias Doubao-Seed-1.6; the expected provider revision was not exposed/verified."
+    }
+  },
+  "import_time_utc": "2026-09-09T02:47:34Z",
+  "main_results_read_or_modified": false,
+  "prompt_policy": "same semantic role messages across all models; native model/API chat serialization; target=instruction+two_newlines+input",
+  "scorer_policy": "supplementary_rubric_v1; all supplementary shots re-scored; not asserted identical to main rubric"
+}

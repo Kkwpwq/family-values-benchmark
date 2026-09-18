@@ -1,0 +1,13 @@
+demo_id,task_id,approved
+DG-01,story_generation,1
+DG-02,story_generation,1
+DG-03,story_generation,1
+DG-04,story_generation,1
+DR-01,rewriting,1
+DR-02,rewriting,1
+DR-03,rewriting,1
+DR-04,rewriting,1
+DC-01,continuation,1
+DC-02,continuation,1
+DC-03,continuation,1
+DC-04,continuation,1

@@ -1,0 +1,17 @@
+{
+  "policy_id": "methods_3_5_qwen3",
+  "seed": 20260915,
+  "bootstrap_resamples": 10000,
+  "signflip_resamples": 10000,
+  "qwen3_constrained_holm_family": 15,
+  "qwen3_constrained_tests": {
+    "classification": "two-sided exact McNemar",
+    "reasoning": "two-sided exact McNemar",
+    "qa_v4_5": "two-sided exact McNemar",
+    "relationship": "two-sided centered paired source-cluster bootstrap approximation with micro-F1 recomputed from TP/FP/FN",
+    "structuring": "two-sided paired source-cluster sign-flip on Methods-V2 CNHI"
+  },
+  "qwen3_generation_zero_shot": "descriptive profile from latest GPT-5.5/Kimi K2.6 dual-LLM scores; not included in the constrained 15-test Holm family",
+  "robustness_duplicate_rule": "Qwen3-8B Non-Thinking T07_R5 duplicates BASE_R5; T07_R5 is marked non-independent evidence",
+  "delivery_failure_rule": "executed generations without final delivered answers are retained as failed-delivery outcomes, not coded as missing observations"
+}

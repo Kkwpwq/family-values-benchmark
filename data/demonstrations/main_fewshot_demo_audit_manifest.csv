@@ -1,0 +1,16 @@
+sample_id,task_id,role
+MAINDEMO-199b2a800eca,classification,main_fixed_demo
+MAINDEMO-3343bb0fdc91,classification,main_fixed_demo
+MAINDEMO-891433da8af1,classification,main_fixed_demo
+MAINDEMO-65a808a57f86,reasoning,main_fixed_demo
+MAINDEMO-a05c48b79bf1,reasoning,main_fixed_demo
+MAINDEMO-d30f134736f3,reasoning,main_fixed_demo
+MAINDEMO-735e84bcd3f1,structuring,main_fixed_demo
+MAINDEMO-e61bd09a40ac,structuring,main_fixed_demo
+MAINDEMO-ee95176cc582,structuring,main_fixed_demo
+MAINDEMO-4a714a2b0926,relationship,main_fixed_demo
+MAINDEMO-600214d5ec46,relationship,main_fixed_demo
+MAINDEMO-76b081464a99,relationship,main_fixed_demo
+MAINDEMO-b0c6dd9fe245,qa_v4_5,main_fixed_demo
+MAINDEMO-c354766fa3b0,qa_v4_5,main_fixed_demo
+MAINDEMO-dd50111bbc6e,qa_v4_5,main_fixed_demo

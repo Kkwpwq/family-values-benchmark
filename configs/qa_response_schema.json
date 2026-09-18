@@ -1,0 +1,4 @@
+{
+  "type": "statement_combination_single_choice",
+  "format": "判断①②③后，仅输出一个大写字母：A、B、C 或 D"
+}

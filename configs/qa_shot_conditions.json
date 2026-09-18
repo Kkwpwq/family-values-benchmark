@@ -1,0 +1,26 @@
+[
+  {
+    "condition_id": "0shot",
+    "n_shot": 0,
+    "demo_ids": [],
+    "demo_policy": "none"
+  },
+  {
+    "condition_id": "1shot",
+    "n_shot": 1,
+    "demo_ids": [
+      "QA45-DEMO-01"
+    ],
+    "demo_policy": "fixed_task_demo_ids"
+  },
+  {
+    "condition_id": "3shot",
+    "n_shot": 3,
+    "demo_ids": [
+      "QA45-DEMO-01",
+      "QA45-DEMO-02",
+      "QA45-DEMO-03"
+    ],
+    "demo_policy": "fixed_task_demo_ids"
+  }
+]

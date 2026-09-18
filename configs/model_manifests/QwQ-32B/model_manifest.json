@@ -1,0 +1,27 @@
+{
+  "model_id": "QwQ-32B",
+  "source_id": "Qwen/QwQ-32B",
+  "deployment": "local",
+  "provider_model_id": null,
+  "source_revision": null,
+  "checkpoint_fingerprint_sha256": "902fd4e47f4778a76ccc4ab18864892a1d9c65cc91de2036e03e6c44effa547e",
+  "reasoning_mode": "native-reasoning",
+  "dtype": "bfloat16",
+  "runtime_versions": {
+    "transformers": "4.57.3",
+    "torch": "2.7.1+cu126"
+  },
+  "generation": {
+    "do_sample": true,
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 40,
+    "repetition_penalty": 1.0
+  },
+  "max_output_tokens": 32768,
+  "context_limit": 40960,
+  "system_prompt_policy": {
+    "main_non_qa_tasks": null,
+    "main_qa_v4_5": "configs/qa_system_prompt.txt"
+  }
+}

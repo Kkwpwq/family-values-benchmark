@@ -1,0 +1,13 @@
+﻿family_id,n_tests,role
+main_classification_primary_22,22,formal primary shot-vs-zero family
+main_reasoning_primary_22,22,formal primary shot-vs-zero family
+main_structuring_primary_22,22,formal primary shot-vs-zero family
+main_relationship_primary_22,22,formal primary shot-vs-zero family
+main_qa_v4_5_primary_22,22,formal primary shot-vs-zero family
+main_classification_macro_f1_secondary_22,22,secondary classification endpoint
+matched_order_prespecified_30,30,formal controlled matched-order family
+matched_order_classification_macro_f1_secondary_5,5,secondary classification endpoint
+generation_story_generation_22,22,formal generation sensitivity family
+generation_rewriting_22,22,formal generation sensitivity family
+generation_continuation_22,22,formal generation sensitivity family
+earlier_ablation_global_125_exploratory,125,earlier diagnostic experiment; separate from matched-order

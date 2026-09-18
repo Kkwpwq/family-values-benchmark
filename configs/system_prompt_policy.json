@@ -1,0 +1,9 @@
+{
+  "main_experiment": {
+    "non_qa_tasks": null,
+    "qa_v4_5": "configs/qa_system_prompt.txt"
+  },
+  "diagnostic_experiments": {
+    "ablation_and_robustness": "configs/diagnostic_system_prompts.json"
+  }
+}

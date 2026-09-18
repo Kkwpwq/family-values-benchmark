@@ -1,0 +1,9 @@
+model_id,task_id,base_setting,duplicate_setting,paired_outputs,identical_raw_output_sha256,identical_generation_seed,exact_output_duplicate,independent_evidence
+Qwen3-8B-NonThinking,classification,BASE_R5,T07_R5,55,55,55,True,False
+Qwen3-8B-NonThinking,continuation,BASE_R5,T07_R5,55,55,55,True,False
+Qwen3-8B-NonThinking,qa_v4_5,BASE_R5,T07_R5,75,75,75,True,False
+Qwen3-8B-NonThinking,reasoning,BASE_R5,T07_R5,60,60,60,True,False
+Qwen3-8B-NonThinking,relationship,BASE_R5,T07_R5,60,60,60,True,False
+Qwen3-8B-NonThinking,rewriting,BASE_R5,T07_R5,60,60,60,True,False
+Qwen3-8B-NonThinking,story_generation,BASE_R5,T07_R5,55,55,55,True,False
+Qwen3-8B-NonThinking,structuring,BASE_R5,T07_R5,75,75,75,True,False

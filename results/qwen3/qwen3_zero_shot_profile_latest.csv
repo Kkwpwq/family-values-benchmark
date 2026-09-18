@@ -1,0 +1,17 @@
+model_id,task_id,score_100,ci95_low_100,ci95_high_100,n_items,n_clusters,score_source,primary_judge
+Qwen3-8B-NonThinking,classification,56.99999999999999,48.0,67.0,100,100,Methods-V2 constrained item scores,DETERMINISTIC_OR_METHODS_V2
+Qwen3-8B-NonThinking,reasoning,95.0,90.0,99.0,100,100,Methods-V2 constrained item scores,DETERMINISTIC_OR_METHODS_V2
+Qwen3-8B-NonThinking,structuring,80.18841690073694,78.21300461443704,81.52631831382845,100,100,Methods-V2 constrained item scores,DETERMINISTIC_OR_METHODS_V2
+Qwen3-8B-NonThinking,relationship,43.669250645994836,34.9484958157968,52.594339622641506,50,50,Methods-V2 constrained item scores,DETERMINISTIC_OR_METHODS_V2
+Qwen3-8B-NonThinking,qa_v4_5,86.0,79.0,92.0,100,50,Methods-V2 constrained item scores,DETERMINISTIC_OR_METHODS_V2
+Qwen3-8B-NonThinking,story_generation,66.101,64.25296249999998,67.90401875,100,100,latest GPT-5.5 + Kimi K2.6 dual-LLM item scores,GPT-5.5_KIMI-K2.6_MEAN
+Qwen3-8B-NonThinking,rewriting,71.4495,69.93096249999999,72.8840125,100,25,latest GPT-5.5 + Kimi K2.6 dual-LLM item scores,GPT-5.5_KIMI-K2.6_MEAN
+Qwen3-8B-NonThinking,continuation,52.243,50.574225,53.904087499999996,100,100,latest GPT-5.5 + Kimi K2.6 dual-LLM item scores,GPT-5.5_KIMI-K2.6_MEAN
+Qwen3-8B-Thinking,classification,71.0,62.0,80.0,100,100,Methods-V2 constrained item scores,DETERMINISTIC_OR_METHODS_V2
+Qwen3-8B-Thinking,reasoning,99.0,97.0,100.0,100,100,Methods-V2 constrained item scores,DETERMINISTIC_OR_METHODS_V2
+Qwen3-8B-Thinking,structuring,78.26953504019455,75.07139763031962,80.67101538780825,100,100,Methods-V2 constrained item scores,DETERMINISTIC_OR_METHODS_V2
+Qwen3-8B-Thinking,relationship,75.65543071161048,67.98761714526013,82.62456780682783,50,50,Methods-V2 constrained item scores,DETERMINISTIC_OR_METHODS_V2
+Qwen3-8B-Thinking,qa_v4_5,92.0,87.0,97.0,100,50,Methods-V2 constrained item scores,DETERMINISTIC_OR_METHODS_V2
+Qwen3-8B-Thinking,story_generation,72.4875,70.35521250000001,74.57849999999999,100,100,latest GPT-5.5 + Kimi K2.6 dual-LLM item scores,GPT-5.5_KIMI-K2.6_MEAN
+Qwen3-8B-Thinking,rewriting,73.336,72.1499125,74.53205000000001,100,25,latest GPT-5.5 + Kimi K2.6 dual-LLM item scores,GPT-5.5_KIMI-K2.6_MEAN
+Qwen3-8B-Thinking,continuation,52.24374999999999,49.88719999999999,54.60852500000001,100,100,latest GPT-5.5 + Kimi K2.6 dual-LLM item scores,GPT-5.5_KIMI-K2.6_MEAN

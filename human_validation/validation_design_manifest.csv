@@ -1,0 +1,10 @@
+module,records_per_reviewer,purpose,public_material
+A,180,"Generation validation: 60 outputs per generation task","blinded_generation_outputs_180.jsonl"
+B_QA,100,"QA reference audit","same 100 QA records in data/benchmark/canonical_gold_750.jsonl"
+B_REL,50,"Relationship-reference audit","same 50 relationship records in data/benchmark/canonical_gold_750.jsonl"
+B_PLUS,60,"Classification 40 + structuring 20 reference audit","blinded_reference_audit_cls_struct_60.jsonl"
+C,100,"Controlled-experiment output/error audit","blinded_controlled_output_audit_100.jsonl"
+C_PLUS,60,"Main-benchmark scorer-positive endpoint audit","blinded_scorer_positive_audit_60.jsonl"
+D,39,"Controlled-demonstration audit","blinded_controlled_demonstrations_39.jsonl"
+D_MAIN,15,"Main constrained-task few-shot demonstration audit","../data/demonstrations/main_fewshot_demo_audit_manifest.csv"
+TOTAL,604,"Full-independent core package per reviewer","No completed individual reviewer ratings are included in this public minimal release"

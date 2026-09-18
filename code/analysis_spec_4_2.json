@@ -1,0 +1,75 @@
+{
+  "policy_id": "methods_3_5",
+  "bootstrap_resamples": 10000,
+  "signflip_resamples": 10000,
+  "seed": 20260915,
+  "primary_models": [
+    "Baichuan2-7B-Chat",
+    "chatglm3-6b",
+    "deepseek-llm-7b-chat",
+    "DeepSeek-R1-Distill-Qwen-32B",
+    "glm-4-9b-chat",
+    "internlm2_5-7b-chat",
+    "Mistral-7B-Instruct-v0.3",
+    "Qwen2.5-7B-Instruct",
+    "Qwen3-8B-NonThinking",
+    "QwQ-32B",
+    "Doubao"
+  ],
+  "main_primary_endpoints": {
+    "classification": {
+      "metric": "accuracy",
+      "test": "exact McNemar",
+      "holm_family_size": 22
+    },
+    "reasoning": {
+      "metric": "judgment accuracy",
+      "test": "exact McNemar",
+      "holm_family_size": 22
+    },
+    "structuring": {
+      "metric": "CNHI Methods-V2",
+      "test": "paired sign-flip",
+      "holm_family_size": 22
+    },
+    "relationship": {
+      "metric": "corpus micro-F1",
+      "test": "centered paired source-cluster bootstrap approximation",
+      "holm_family_size": 22
+    },
+    "qa_v4_5": {
+      "metric": "recoverable-answer accuracy",
+      "test": "exact McNemar",
+      "holm_family_size": 22
+    }
+  },
+  "secondary_endpoints": {
+    "classification_macro_f1": {
+      "test": "centered paired source-cluster bootstrap approximation",
+      "macro_f1_recomputed_in_each_bootstrap_replicate": true,
+      "holm_family_size": 22,
+      "family_separate_from_primary_accuracy": true
+    }
+  },
+  "matched_order": {
+    "orders_per_item": 6,
+    "primary_family_size": 30,
+    "aggregation": "average repeated order observations within item before inferential testing",
+    "relationship_test": "centered paired source-cluster bootstrap approximation with micro-F1 recomputed in each replicate",
+    "structuring_test": "paired sign-flip on item-level mean CNHI",
+    "classification_macro_f1_secondary_family_size": 5
+  },
+  "generation_sensitivity": {
+    "paired_records": 2376,
+    "items_per_task": 24,
+    "models": 11,
+    "shots": [
+      0,
+      1,
+      3
+    ],
+    "test": "paired sign-flip",
+    "holm_family_size_per_task": 22,
+    "rewriting_cluster_policy": "source_index from panel72_scoring; 24 selected rewriting items have 24 distinct sources"
+  }
+}

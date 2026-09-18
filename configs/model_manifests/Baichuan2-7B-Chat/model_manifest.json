@@ -1,0 +1,24 @@
+{
+  "model_id": "Baichuan2-7B-Chat",
+  "source_id": "baichuan-inc/Baichuan2-7B-Chat",
+  "deployment": "local",
+  "provider_model_id": null,
+  "source_revision": null,
+  "checkpoint_fingerprint_sha256": "6e4456b98f394f45b65d9a231ae5a5a6e97e3cb0e7d713369e2320e22d6c4f5c",
+  "reasoning_mode": "none",
+  "dtype": "bfloat16",
+  "runtime_versions": {
+    "transformers": "4.29.2",
+    "torch": "2.7.1+cu126"
+  },
+  "generation": {
+    "do_sample": false,
+    "use_cache": true
+  },
+  "max_output_tokens": 2048,
+  "context_limit": 4096,
+  "system_prompt_policy": {
+    "main_non_qa_tasks": null,
+    "main_qa_v4_5": "configs/qa_system_prompt.txt"
+  }
+}

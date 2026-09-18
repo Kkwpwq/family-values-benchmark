@@ -1,0 +1,45 @@
+[
+  {
+    "setting_id": "BASE_R5",
+    "repeats": 5,
+    "seeds": [
+      1101,
+      1102,
+      1103,
+      1104,
+      1105
+    ],
+    "generation_overrides": null,
+    "purpose": "formal per-model generation configuration stability"
+  },
+  {
+    "setting_id": "T02_R5",
+    "repeats": 5,
+    "seeds": [
+      1101,
+      1102,
+      1103,
+      1104,
+      1105
+    ],
+    "generation_overrides": {
+      "temperature": 0.2,
+      "do_sample": true
+    }
+  },
+  {
+    "setting_id": "T07_R5",
+    "repeats": 5,
+    "seeds": [
+      1101,
+      1102,
+      1103,
+      1104,
+      1105
+    ],
+    "generation_overrides": {
+      "temperature": 0.7,
+      "do_sample": true
+    }
+  }
+]

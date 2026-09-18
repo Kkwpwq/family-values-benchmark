@@ -1,0 +1,27 @@
+{
+  "model_id": "Qwen3-8B-NonThinking",
+  "source_id": "Qwen/Qwen3-8B",
+  "deployment": "local",
+  "provider_model_id": null,
+  "source_revision": null,
+  "checkpoint_fingerprint_sha256": "074bf513af8b7c714cd10fda08963714cfd2f94182afbc9854482ab910d46868",
+  "reasoning_mode": "non-thinking",
+  "dtype": "bfloat16",
+  "runtime_versions": {
+    "transformers": "4.57.3",
+    "torch": "2.7.1+cu126"
+  },
+  "generation": {
+    "do_sample": true,
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0
+  },
+  "max_output_tokens": 2048,
+  "context_limit": 40960,
+  "system_prompt_policy": {
+    "main_non_qa_tasks": null,
+    "main_qa_v4_5": "configs/qa_system_prompt.txt"
+  }
+}
